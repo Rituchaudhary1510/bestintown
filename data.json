@@ -1,0 +1,243 @@
+{
+    "url":"https://bestintownpizzas.com/home",
+    "username3":"ritutanwar1510@gmail.com",
+    "username":"devsharktank@gmail.com",
+    "wrong_username":"ritumehla.tech@gmail.com",
+    "password":"Ritu@1510",
+    "password3":"12345678",
+    "customer_name":"Ritu",
+    "phone":"(215) 214-2900",
+    "updated_name":"Osama",
+    "special_inst":"Extra pickels",
+    "tip":"2",
+
+    "select_card":"Sam Hoj (4242)",
+    "address":"1818 Afton Street, Philadelphia, PA, USA",
+
+    "name_on_card":"Sam Hoj",
+    "card_number":"4242424242424242",
+    "month":"02",
+    "year":"2022",
+    "cvc":"222",
+    "quantity":"2",
+
+    "new_card_name":"Tester",
+    "new_card_num":"4000056655665556",
+    "new_card_month":"02",
+    "new_card_year":"2023",
+    "new_card_cvc":"222",
+    "new_card_remember":"Yes",
+
+    "order_type":"Delivery",
+    "order_time":"12:15 pm",
+    "addresslist":[
+            "71 Castor Ave, Philadelphia, PA 19152, USA",
+            "71 North Franklin Stree, Philadelphia, PA 19152, USA",
+            "765 Castor Ave, Philadelphia, PA 19152, USA",
+            "632 Woodward Street, Philadelphia, PA 19152, USA",
+            "5675 North Front Street, Philadelphia, PA, USA",
+            "7971 Castor Ave , Philadelphia, PA 19152",
+            "1023 Longshore Avenue, Philadelphia, PA, USA",
+            "2301 Woodward Street, Philadelphia, PA, USA",
+            "1247 East Columbia Avenue, Philadelphia, PA, USA",
+            "911 North Franklin Street, Philadelphia, PA, USA",
+            "450 North 18th Street, Philadelphia, PA, USA"
+           ],
+    "combo_item":[{
+        "menugroup":"Combo",
+        "menusubgroup": "",
+       "menuitem": "Everyday Special #5"
+    }
+    ],
+
+    "seafood_platters":[{
+        "menugroup":"FRIED SEAFOOD PLATTERS",
+        "menusubgroup": "",
+        "menuitem": "Jumbo Fried Shrimp Platter"
+    }
+    ],
+
+    "calzones":[
+        {
+            "menugroup":"Calzones",
+            "menuitem":"Vegetarian Calzone"
+        }
+    ],
+    "hot_platter":[
+        {
+            "menugroup":"HOT PLATTERS HALAL MEDITERRANEAN SPECIALTIES",
+            "menuitem":"Kofta Kabab Platter"
+        },
+        {
+            "menugroup":"HOT PLATTERS HALAL MEDITERRANEAN SPECIALTIES",
+            "menuitem":"Chicken Kabab Platter"
+        }
+    ],
+    
+    "sandwiches":[
+        {
+            "menugroup":"SANDWICHES HALAL MEDITERRANEAN SPECALTIES",
+            "menuitem":"Falafel Sandwich"
+        }],
+    
+    "menulist_pizza":[
+        
+            {
+                "menugroup": "Pizza",
+                "menusubgroup": "",
+                "menuitem": "Tomato Pie",
+                "quantity": "2",
+                "size":"medium",
+                "size1":"large",
+                "size2":"xlarge",
+                "crust":"regular",
+                "crust1":"thin",
+                "additional_topping":"No topping"
+
+            }
+    
+        ],
+
+        "menulist_pizza2":[
+        
+            {
+                "menugroup": "Pizza",
+                "menusubgroup": "",
+                "menuitem": "Tomato Pie",
+                "quantity": "2",
+                "size":"medium",
+                "size1":"large",
+                "size2":"xlarge",
+                "crust":"regular",
+                "crust1":"thin",
+                "additional_topping":"No topping"
+            }
+    
+        ],
+
+        "menulist_pizza3":[
+        
+            {
+                "menugroup": "Gourmet Pizza",
+                "menusubgroup": "",
+                "menuitem": "G1. Chicken Cordon Blue Pizza",
+                "quantity": "2",
+                "size":"medium",
+                "size1":"large",
+                "size2":"xlarge",
+                "crust":"regular",
+                "crust1":"thin",
+                "additional_topping":"ExtraCheese_TurkeyHam"
+            }
+    
+        ],
+        "menulist_pizza4":[
+        
+            {
+                "menugroup": "Stuffed Pizza",
+                "menusubgroup": "",
+                "menuitem": "Cheesesteak Stuffed Pizza",
+                "quantity": "2",
+                "size":"medium",
+                "size1":"large",
+                "size2":"xlarge",
+                "crust":"regular",
+                "crust1":"thin",
+                "additional_topping":"No topping"
+            }
+    
+        ],
+
+    "menulist":[
+        {
+            "productname":"Tomato Pie",
+            "product":"TOMATO PIE"
+
+        }
+    ],
+    "menulist_":[
+        {
+            "productname":"Roma Pizza"
+         
+            
+        }
+    ],
+
+    "menulist2":[
+        
+        {
+                "productname":"Cheese and Cheese Hoagie",
+                "product":"CHEESE AND CHEESE HOAGIE"
+                
+        },
+        {
+            "productname":"Corned Beef Special Hoagie",
+            "product":"CORNED BEEF SPECIAL HOAGIE"
+            
+            
+        }
+    ],
+    "menulist3":[
+        {
+            "productname":"Buffalo Finger Salad"
+            
+            
+        }],
+        "menulist4":[
+            {
+                "productname":"Pizza Burger"
+            }
+        ],
+        "menulist5":[
+            {
+                "productname":"Fajita Wrap",
+                "product":"FAJITA WRAP"
+            }
+        ],
+        "gourmet_pizza":[
+            {
+                "productname":"Grilled Chicken Caesar Pizza"
+                
+            }
+        ],
+        "stuffed_pizza":[
+            {
+                "productname":"Cheesesteak Stuffed Pizza"
+            }
+        ],
+        "Calzones_menu":[
+            {
+                "productname":"Vegetarian Calzone"
+            }
+        ],
+        "stramboilis_menu":[
+            {
+                "productname":"Beef Sausage"
+            }
+        ],
+        "salad_menu":[
+            {
+                "productname":"Garden Salad"
+            }
+        ],
+        "hoagies_grinders":[
+            {
+                "productname":"Turkey and Corned Beef Hoagie"
+            }
+        ],
+        "Paninis_menu":[
+            {
+                "productname":"Smoked Turkey Panini"
+            }
+        ],
+        "cold_sandwichs":[
+            {
+                "productname":"American Cheese Sandwich"
+            }
+        ],
+        "hot_sandwichs":[
+            {
+                "productname":"Meatball Parmigiana Sandwich"
+            }
+        ]
+}

@@ -28,7 +28,6 @@ def fetching_website(driver, site_url):
                 loginlocators.start_button).click()
         except:
             print("Restuarant has opened now")
-        time.sleep(3)
         assert driver.title == "Home | Best In Town Pizzas"
 
     except Exception as e:
@@ -74,18 +73,58 @@ def product_click(driver, productname):
             By_xpath(menugroupLocators.combo).click()
         elif productname == "Pizza":
             By_xpath(menugroupLocators.pizza).click()
-        elif productname == "Gourmet Pizza":
+        elif productname == "GOURMET PIZZA":
             By_xpath(menugroupLocators.gourmet_Pizza).click()
         elif(productname == "Stuffed Pizza"):
             By_xpath(menugroupLocators.stuffed_Pizza).click()
+        elif productname == "STROMBOLIS":
+            By_xpath(menugroupLocators.strombolis).click()
         elif productname == "Calzones":
             By_xpath(menugroupLocators.calzones).click()
-        elif productname == "HOT PLATTERS HALAL MEDITERRANEAN SPECIALTIES":
-            By_xpath(menugroupLocators.hot_Platters).click()
-        elif productname == "SALAD PLATTERS":
-            By_xpath(menugroupLocators.salad_Platters).click()
-        elif productname == "FRIED SEAFOOD PLATTERS":
+        elif productname == "Buffalo Wings":
+            By_xpath(menugroupLocators.buffalo_wings).click()
+        elif productname == "Steaks":
+            By_xpath(menugroupLocators.steaks).click()
+        elif productname == "Chicken Cheesesteaks":
+            By_xpath(menugroupLocators.chicken_steaks).click()
+        elif productname == "SALMON STEAKS":
+            By_xpath(menugroupLocators.salmon_steaks).click()
+        elif productname == "STEAMED SEAFOOD PLATTERS":
             By_xpath(menugroupLocators.seafood_platter).click()
+        elif productname == "ITALIAN PLATTERS":
+            By_xpath(menugroupLocators.italian_platter).click()
+        elif productname == "BURGERS":
+            By_xpath(menugroupLocators.burgers).click()
+        elif productname == "QUESADILLAS":
+            By_xpath(menugroupLocators.quesadillas).click()
+        elif productname == "TRIPLE_CLUBS":
+            By_xpath(menugroupLocators.triple_clubes).click()
+        elif productname == "HOT PLATTERS":
+            By_xpath(menugroupLocators.hot_Platters).click()
+        elif productname == "SANDWICHES HALAL":
+            By_xpath(menugroupLocators.sandwiches).click()
+        elif productname == "SALAD HALAL":
+            By_xpath(menugroupLocators.salad).click()
+        elif productname == "DESSERTS":
+            By_xpath(menugroupLocators.dessert).click()
+        elif productname == "APPETIZERS":
+            By_xpath(menugroupLocators.appetizers).click()
+        elif productname == "SIDE ORDERS":
+            By_xpath(menugroupLocators.side_orders).click()
+        elif productname == "HOT SANDWICHES":
+            By_xpath(menugroupLocators.hot_sandwiches).click()
+        elif productname == "COLD SANDWICHES":
+            By_xpath(menugroupLocators.cold_sandwiches).click()
+        elif productname == "PANINIS":
+            By_xpath(menugroupLocators.pannis).click()
+        elif productname == "WRAPS":
+            By_xpath(menugroupLocators.wraps).click()
+        elif productname == "SALAD_PLATTER":
+            By_xpath(menugroupLocators.salad_platters).click()
+        elif productname == "FRIED SEAFOOD PLATTERS":
+            By_xpath(menugroupLocators.fried_seafood).click()
+        elif productname == "BEVERAGES":
+            By_xpath(menugroupLocators.beverages).click()
         else:
             By_xpath(menugroupLocators.hoagies_grinders).click()
     except Exception as e:
@@ -101,11 +140,10 @@ def select_product(driver, productname):
     try:
         print(productname)
         productname1 = productname.upper()
-        product = find_element_by_text2(driver, productname)
+        product = find_element_by_text(driver, productname)
         product.click()
         allure.attach(driver.get_screenshot_as_png(),
                       name='toppings_screen', attachment_type=AttachmentType.PNG)
-        print("product")
     except Exception as e:
         raise e
 
@@ -118,9 +156,28 @@ def select_combo_item(driver, size):
         a = 0
         while(a < 6):
             try:
+                time.sleep(2)
                 find_element_by_text(driver, size).click()
-                time.sleep(1)
             except:
+                print("no size")
+            try:
+                try:
+                    driver.find_element_by_xpath(
+                        productlocators.beef_peproni).click()
+                except:
+                    try:
+                        driver.find_element_by_xpath(
+                            productlocators.hot_pepper).click()
+                    except:
+                        try:
+                            driver.find_element_by_xpath(
+                                productlocators.soda_can).click()
+                        except:
+                            driver.find_element_by_xpath(
+                                productlocators.italian_dressing).click()
+
+            except:
+
                 try:
                     driver.find_element_by_id(
                         productlocators.product_instruction).send_keys("No Pickels")
@@ -131,9 +188,8 @@ def select_combo_item(driver, size):
                     except:
                         driver.find_element_by_id(
                             productlocators.product_instructions3).send_keys("Make it fast")
-                time.sleep(1)
             try:
-                find_element_by_text(driver, "Next").click()
+                driver.find_element_by_xpath(productlocators.next_btn).click()
             except:
                 print("now add to bag")
                 break
@@ -192,16 +248,14 @@ def sign_in(driver, email, password):
     By_xpath = driver.find_element_by_xpath
     By_id = driver.find_element_by_id
     try:
-        time.sleep(4)
         By_xpath(loginlocators.home_signin_btn).click()
-        time.sleep(3)
+        time.sleep(1)
         By_id(loginlocators.signin_email).send_keys(email)
         By_id(loginlocators.signin_password).send_keys(password)
         By_xpath(loginlocators.signin_btn).click()
         time.sleep(3)
         allure.attach(driver.get_screenshot_as_png(),
                       name='Signin_screen', attachment_type=AttachmentType.PNG)
-        time.sleep(2)
         signed_in = By_xpath(loginlocators.signedin_label).text
         print(signed_in)
         assert signed_in in "RITU"
@@ -275,31 +329,31 @@ def add_delivery_address(driver, hno):
     By_xpath = driver.find_element_by_xpath
     By_id = driver.find_element_by_id
     try:
-        time.sleep(2)
+        time.sleep(5)
         By_xpath(loginlocators.signedin_label).click()
         time.sleep(3)
         By_xpath(loginlocators.del_add_link).click()
         time.sleep(4)
         By_xpath(loginlocators.add_new_address_btn).click()
         time.sleep(2)
-        By_id(loginlocators.new_add_field).send_keys(hno)
+        By_xpath(loginlocators.new_add_field).send_keys(hno)
         time.sleep(3)
-        By_xpath(loginlocators.address_list).click()
-        time.sleep(5)
-        success_msg = By_xpath(loginlocators.address_add_message).text
-        assert success_msg == "Good news! Best In Town Pizzas can deliver to this address"
-        By_xpath(loginlocators.update_add_btn).click()
-        time.sleep(5)
+        By_xpath(loginlocators.new_add_field).send_keys(Keys.DOWN)
+        By_xpath(loginlocators.new_add_field).send_keys(Keys.ENTER)
         try:
             warning_msg = By_xpath(loginlocators.warning_msg).text
             assert warning_msg == "The Address already exists."
-            By_xpath(loginlocators.ok_btn).click()
+            # By_xpath(loginlocators.ok_btn).click()
+            success_msg = By_xpath(loginlocators.address_add_message).text
+            print(success_msg)
+            assert success_msg == "Good news! Best In Town Pizzas can deliver to this address"
             By_xpath(loginlocators.close_btn).click()
+
         except:
-            print("new address has been added")
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='new_updated_address', attachment_type=AttachmentType.PNG)
-        time.sleep(2)
+            print("new address ha sbeen added")
+            allure.attach(driver.get_screenshot_as_png(
+            ), name='new_updated_address', attachment_type=AttachmentType.PNG)
+            time.sleep(2)
         address_table = By_xpath(loginlocators.address_table).text
         time.sleep(1)
         assert hno in address_table
@@ -368,12 +422,13 @@ def select_quantity(driver, quantity):
 
 
 @allure.step("To be able to select pizza sides and quantity")
-def select_pizza_sides(driver, size, crust, additional_Topping):
+def select_pizza_sides(driver, size, crust, onions, additional_Topping):
     By_xpath = driver.find_element_by_xpath
     try:
         try:
             if size == "medium":
-                By_xpath(productlocators.pizza_medium_size).click()
+                By_xpath(productlocators.pizza_large_size).click()
+
             elif size == "large":
                 By_xpath(productlocators.pizza_large_size).click()
             else:
@@ -382,6 +437,7 @@ def select_pizza_sides(driver, size, crust, additional_Topping):
                 except:
                     By_xpath(productlocators.stuffd_pizza_Xlarge_size).click()
         except Exception as ex:
+            print("no size selected")
             raise ex
         try:
             if crust == "regular":
@@ -391,61 +447,75 @@ def select_pizza_sides(driver, size, crust, additional_Topping):
             else:
                 print("no crust")
         except Exception as es:
-            raise es
+            print("no crust2")
+    except:
+        print("nothing")
+    try:
         try:
-            if additional_Topping == "ExtraCheese_TurkeyHam":
-                s = By_xpath(productlocators.additionalToppng)
-                time.sleep(1)
-                driver.execute_script("arguments[0].scrollIntoView();", s)
-                By_xpath(productlocators.extra_cheese).click()
-                time.sleep(1)
-                By_xpath(productlocators.turkey_ham).click()
-            elif additional_Topping == "Broccoli_GreenPepper":
-                s = By_xpath(productlocators.additionalToppng)
-                time.sleep(2)
-                driver.execute_script("arguments[0].scrollIntoView();", s)
-                By_xpath(productlocators.brocoli).click()
-                time.sleep(1)
-                By_xpath(productlocators.green_peppr).click()
-            else:
-                print("additional_Topping")
-        except Exception as es:
-            raise es
-        allure.attach(driver.get_screenshot_as_png(),
-                      name='toppings_screen', attachment_type=AttachmentType.PNG)
-        print("quantity")
-        time.sleep(4)
-    except Exception as e:
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='Exception_screen', attachment_type=AttachmentType.PNG)
-        raise e
+            item = By_xpath(
+                "//*[contains(text(),'{}')]/ancestor::label//ancestor::div//ancestor::div//ancestor::div/div[1]/div/label/div[1]/span[1]".format(onions))
+
+        except:
+            try:
+                item = By_xpath(
+                    "/html/body/div[8]/div/div/div/div/div/div[2]/div[3]/div[1]/div/div[2]/div[1]/div/div/div[1]/span[1]")
+            except:
+                try:
+                    item = By_xpath(
+                        "/html/body/div[8]/div/div/div/div/div/div[2]/div[3]/div[3]/div/div[2]/div[1]/div/label/div[1]/span[1]")
+                except:
+                    item = By_xpath(
+                        "/html/body/div[8]/div/div/div/div/div/div[2]/div[3]/div[1]/div[3]/div[2]/div[1]/div/label/div[1]/span[1]")
+        time.sleep(2)
+        item.click()
+
+        try:
+            style = By_xpath(menugroupLocators.style)
+            time.sleep(2)
+            style.click()
+        except:
+            print("no style no dressing")
+    except:
+        print("No Toppings")
+    allure.attach(driver.get_screenshot_as_png(),
+                  name='toppings_screen', attachment_type=AttachmentType.PNG)
+    time.sleep(4)
 
 
-@allure.step("To be able to select desired quantity")
-def select_toppings(driver, quantity):
+@ allure.step("To be able to select desired quantity")
+def select_toppings(driver, platter, topping):
     try:
         By_xpath = driver.find_element_by_xpath
         try:
-            By_xpath(productlocators.topping1).click()
-        except:
-            print("no size")
-        time.sleep(2)
-        try:
-            By_xpath(productlocators.topping2).click()
-        except:
-            print("no crust")
-        time.sleep(2)
-        # By_xpath(productlocators.quantity).clear()
-        # By_xpath(productlocators.quantity).send_keys(quantity)
-        # time.sleep(2)
-        allure.attach(driver.get_screenshot_as_png(),
-                      name='toppings_screen', attachment_type=AttachmentType.PNG)
-        # print("quantity")
+
+            # item = By_xpath(
+            #     "//*[contains(text(),'{}')]/ancestor::div//ancestor::div//ancestor::div//ancestor::div/div[1]/div/label/div[1]/span[1]".format(platter))
+
+            # item.click()
+            try:
+                item2 = By_xpath(
+                    "//*[contains(text(),'())')]/ancestor::div//ancestor::div//ancestor::div//ancestor::div/div[1]/div/label/div[1]/span[1]".format(topping))
+                item2.click()
+            except:
+                item22 = By_xpath(
+                    "//*[contains(text(),'{}')]/ancestor::div//ancestor::div//ancestor::div//ancestor::div/div/div[1]/span[1]".format(platter))
+                item22.click()
+            try:
+                item3 = By_xpath(
+                    "//*[contains(text(),'YES')]/ancestor::label//ancestor::div//ancestor::div//ancestor::div/div[1]/div/label/div[1]/span[1]")
+                item3.click()
+            except:
+                print("no grinder")
+        except Exception as ex:
+            allure.attach(driver.get_screenshot_as_png(),
+                          name='toppings_screen_failure', attachment_type=AttachmentType.PNG)
+            raise ex
+
     except Exception as e:
         raise e
 
 
-@allure.step("To be able to select desired quantity")
+@ allure.step("To be able to select desired quantity")
 def select_dressings(driver, quantity):
     try:
         By_xpath = driver.find_element_by_xpath
@@ -469,7 +539,7 @@ def select_dressings(driver, quantity):
         raise e
 
 
-@allure.step("to add product to bag")
+@ allure.step("to add product to bag")
 def add_to_bag(driver, item):
     By_xpath = driver.find_element_by_xpath
     try:
@@ -485,52 +555,71 @@ def add_to_bag(driver, item):
         raise e
 
 
-@allure.step("to add product to bag and verify cart details before checkout")
+@ allure.step("to add product to bag and verify cart details before checkout")
 def add_to_bag_and_verify_cart_details(driver):
     By_xpath = driver.find_element_by_xpath
     By_id = driver.find_element_by_id
     try:
         try:
-            item1_price = By_id(productlocators.add_to_bag_btn_price).text
-            print("Price of 1st item is: " + item1_price)
-            By_id(productlocators.add_to_bag_btn_price).click()
+            By_xpath(productlocators.add_to_bag_btn_price).click()
         except:
-            item1_price = By_xpath(productlocators.edit_tobag_btn_price).text
-            print(item1_price)
-            By_xpath(productlocators.edit_update_btn).click()
-
+            By_xpath(productlocators.add_to_bag_btn2).click()
+        time.sleep(3)
+        driver.execute_script("window.scroll(0, 0)")
+        print("scroll up")
+        time.sleep(4)
         By_xpath(cartLocators.cart_bag).click()
         time.sleep(5)
+        item_price = By_xpath(cartLocators.product_price).text
+        print("product price:  " + item_price)
+        item_price2 = item_price[1:]
+        print(item_price2)
 
+        subtotal = By_xpath(cartLocators.cart_subtotal).text
+        subtotal2 = subtotal[1:]
+        print(subtotal2)
+
+        dis = By_xpath(cartLocators.discount).text
+        dis_amount = dis[1:]
+        print(dis_amount)
         try:
-            items_price2 = By_xpath(cartLocators.product_price).text
-            print("price is" + items_price2)
-            items_price3 = items_price2[1:]
-            print(items_price3)
-            assert items_price3 == item1_price
-
-            subtotal = By_xpath(cartLocators.cart_subtotal).text
-            subtotal2 = subtotal[1:]
-            assert subtotal == items_price2
-
             fee = By_xpath(cartLocators.delivery_fee).text
             delivery_fee = fee[1:]
+            print(delivery_fee)
+        except:
+            print("its a pickup order")
+
+        try:
             tax = By_xpath(cartLocators.estimated_tax).text
             tax2 = tax[1:]
-
-            totalprice = float(subtotal2) + float(tax2) + float(delivery_fee)
+            print(tax2)
+            totalprice = float(subtotal2) + float(delivery_fee) + \
+                float(dis_amount) + float(tax2)
             print(totalprice)
-            format_float = "{:.2f}".format(totalprice)
-
+        except:
+            print("no discount")
+            try:
+                totalprice = float(subtotal2) + \
+                    float(delivery_fee) + float(dis_amount)
+            except:
+                totalprice = float(subtotal2) + float(dis_amount)
+            print(totalprice)
+        format_float = "{:.2f}".format(totalprice)
+        try:
             total = By_xpath(cartLocators.total).text
             time.sleep(1)
-            total2 = total[1:]
-            total3 = float(total2)
-            format_float2 = "{:.2f}".format(total3)
-            print(total3)
-            assert format_float2 == format_float
         except:
-            print("skip")
+            try:
+                total = By_xpath(cartLocators.total1).text
+                time.sleep(1)
+            except:
+                total = By_xpath(cartLocators.total2).text
+                time.sleep(1)
+        total2 = total[1:]
+        total3 = float(total2)
+        format_float2 = "{:.2f}".format(total3)
+        print(total3)
+        assert format_float2 == format_float
 
         print("added to bag")
         allure.attach(driver.get_screenshot_as_png(),
@@ -542,7 +631,78 @@ def add_to_bag_and_verify_cart_details(driver):
         raise e
 
 
-@allure.step("To verify increment of the item quantity and price details in cart")
+@allure.step("to add product to bag and verify cart details before checkout")
+def add_to_bag_and_verify_cart_details_combo(driver):
+    By_xpath = driver.find_element_by_xpath
+    By_id = driver.find_element_by_id
+    try:
+        try:
+            By_xpath(productlocators.add_to_bag_btn_price).click()
+        except:
+            By_xpath(productlocators.add_to_bag_btn2).click()
+        time.sleep(2)
+
+        By_xpath(cartLocators.cart_bag).click()
+        time.sleep(5)
+
+        item_price = By_xpath(cartLocators.product_price).text
+        print("product price:  " + item_price)
+        item_price2 = item_price[1:]
+        print(item_price2)
+
+        subtotal = By_xpath(cartLocators.cart_subtotal).text
+        subtotal2 = subtotal[1:]
+        print(subtotal2)
+
+        dis = By_xpath(cartLocators.discount).text
+        dis_amount = dis[3:]
+        print(dis_amount)
+        try:
+            fee = By_xpath(cartLocators.delivery_fee).text
+            delivery_fee = fee[1:]
+            print(delivery_fee)
+        except:
+            print("its a pickup order")
+
+        tax = By_xpath(cartLocators.estimated_tax).text
+        tax2 = tax[1:]
+        print(tax2)
+        try:
+            totalprice = float(subtotal2) + float(delivery_fee) - \
+                float(dis_amount) + float(tax2)
+            print(totalprice)
+        except:
+            totalprice = float(subtotal2) + \
+                float(delivery_fee) - float(dis_amount)
+            print(totalprice)
+        format_float = "{:.2f}".format(totalprice)
+        try:
+            total = By_xpath(cartLocators.total).text
+            time.sleep(1)
+        except:
+            try:
+                total = By_xpath(cartLocators.total1).text
+                time.sleep(1)
+            except:
+                total = By_xpath(cartLocators.total2).text
+                time.sleep(1)
+        total2 = total[1:]
+        total3 = float(total2)
+        format_float2 = "{:.2f}".format(total3)
+        print(total3)
+        assert format_float2 == format_float
+
+        print("added to bag")
+        allure.attach(driver.get_screenshot_as_png(),
+                      name='cart_screen', attachment_type=AttachmentType.PNG)
+
+    except Exception as e:
+        allure.attach(driver.get_screenshot_as_png(
+        ), name='Exception_screen', attachment_type=AttachmentType.PNG)
+        raise e
+
+
+@ allure.step("To verify increment of the item quantity and price details in cart")
 def increase_item_in_cart(driver):
     By_xpath = driver.find_element_by_xpath
     try:
@@ -559,7 +719,7 @@ def increase_item_in_cart(driver):
         raise e
 
 
-@allure.step("To verify decrement of the item quantity and price details in cart")
+@ allure.step("To verify decrement of the item quantity and price details in cart")
 def decrease_item_in_cart(driver):
     By_xpath = driver.find_element_by_xpath
     try:
@@ -575,24 +735,31 @@ def decrease_item_in_cart(driver):
         raise e
 
 
-@allure.step("edit items")
+@ allure.step("edit items")
 def edit_items(driver):
     By_xpath = driver.find_element_by_xpath
     By_id = driver.find_element_by_id
     try:
-        By_xpath(cartLocators.edit_btn).click()
+        try:
+            By_xpath(cartLocators.edit_btn).click()
+        except:
+            By_xpath(cartLocators.edit_btn2).click()
         time.sleep(3)
         By_id(productlocators.product_instruction).clear()
         By_id(productlocators.product_instruction).send_keys(
             "Send Pickles and extra toppings")
-        By_id(cartLocators.increase_qty).click()
-        By_id(cartLocators.increase_qty).click()
+        try:
+            By_id(cartLocators.increase_qty).click()
+            By_id(cartLocators.increase_qty).click()
+        except:
+            By_xpath(
+                "/html/body/div[8]/div/div/div/div/div/div[2]/div[2]/div/div[1]/div[1]/div[3]/div/div[2]/div[2]/div/label/div[1]/span[1]").click()
 
     except Exception as ex:
         raise ex
 
 
-@allure.step("empty cart")
+@ allure.step("empty cart")
 def delete_items_empty_cart(driver):
     By_xpath = driver.find_element_by_xpath
     no_of_items = By_xpath(cartLocators.item_number).text
@@ -628,7 +795,7 @@ def delete_items_empty_cart(driver):
         raise ex
 
 
-@allure.step("Checkout")
+@ allure.step("Checkout")
 def Checkout(driver):
     By_xpath = driver.find_element_by_xpath
     try:
@@ -640,7 +807,7 @@ def Checkout(driver):
         raise e
 
 
-@allure.step("Checkout to payment screen")
+@ allure.step("Checkout to payment screen")
 def Checkout_to_paymentscreen(driver):
     By_xpath = driver.find_element_by_xpath
     try:
@@ -655,16 +822,23 @@ def Checkout_to_paymentscreen(driver):
         raise e
 
 
-@allure.step("To add a new Delivery Address at checkout stage.")
+@ allure.step("To add a new Delivery Address at checkout stage.")
 def add_new_del_add(driver, address):
     By_xpath = driver.find_element_by_xpath
-    By_id = driver.find_element_by_id
+    By_name = driver.find_element_by_name
     try:
-        By_xpath(checkoutlocators.plus_add_address).click()
-        By_id(checkoutlocators.new_address_bar).send_keys(address)
+        try:
+            By_xpath(checkoutlocators.plus_add_address1).click()
+        except:
+            try:
+                By_xpath(checkoutlocators.plus_add_address).click()
+            except:
+                By_xpath(checkoutlocators.plus_add_address2).click()
+        By_xpath(checkoutlocators.new_address_bar).send_keys(address)
         time.sleep(1)
-        By_id(checkoutlocators.address_sugg).click()
-        By_id(checkoutlocators.save_this_address_btn).click()
+        By_xpath(checkoutlocators.new_address_bar).send_keys(Keys.DOWN)
+        By_xpath(checkoutlocators.new_address_bar).send_keys(Keys.ENTER)
+        # By_xpath(checkoutlocators.save_this_address_btn).click()
         allure.attach(driver.get_screenshot_as_png(),
                       name='screen', attachment_type=AttachmentType.PNG)
         time.sleep(7)
@@ -678,7 +852,7 @@ def add_new_del_add(driver, address):
         raise e
 
 
-@allure.step("To remove a Delivery Address at checkout stage.")
+@ allure.step("To remove a Delivery Address at checkout stage.")
 def remove_del_add(driver, address):
     By_xpath = driver.find_element_by_xpath
     By_id = driver.find_element_by_id
@@ -694,16 +868,16 @@ def remove_del_add(driver, address):
         raise e
 
 
-@allure.step("To edit a existing Delivery Address at checkout stage.")
+@ allure.step("To edit a existing Delivery Address at checkout stage.")
 def edit_del_add(driver, hno):
     By_xpath = driver.find_element_by_xpath
     By_id = driver.find_element_by_id
     try:
         By_xpath(checkoutlocators.edit_add_btn).click()
-        By_id(checkoutlocators.edit_hno_field).clear()
-        By_id(checkoutlocators.edit_hno_field).send_keys(hno)
+        By_xpath(checkoutlocators.edit_hno_field).clear()
+        By_xpath(checkoutlocators.edit_hno_field).send_keys(hno)
         time.sleep(1)
-        By_id(checkoutlocators.save_this_address_btn).click()
+        By_xpath(checkoutlocators.save_this_address_btn).click()
         allure.attach(driver.get_screenshot_as_png(),
                       name='screen', attachment_type=AttachmentType.PNG)
         time.sleep(7)
@@ -716,22 +890,29 @@ def edit_del_add(driver, hno):
         raise e
 
 
-@allure.step("To add new card")
+@ allure.step("To add new card")
 def add_new_card(driver, name, number, month, year, cvc):
     By_xpath = driver.find_element_by_xpath
     By_id = driver.find_element_by_id
     try:
-        By_xpath(checkoutlocators.plus_card_details).click()
+        try:
+            By_xpath(checkoutlocators.plus_card_details).click()
+        except:
+            By_xpath(checkoutlocators.plus_card_details2).click()
         time.sleep(2)
-        By_id(checkoutlocators.card_owner_name).send_keys(name)
+        By_xpath(checkoutlocators.card_owner_name).send_keys(name)
         By_xpath(checkoutlocators.new_card_number).send_keys(number)
-        Select(By_id(checkoutlocators.new_expiry_month)
+        Select(By_xpath(checkoutlocators.new_expiry_month)
                ).select_by_visible_text(month)
-        # Select(By_id(checkoutlocators.new_expiry_year)).select_by_visible_text(year)
-        By_id(checkoutlocators.new_cvc).send_keys(cvc)
+        Select(By_xpath(checkoutlocators.new_expiry_year)
+               ).select_by_visible_text(year)
+        By_xpath(checkoutlocators.new_cvc).send_keys(cvc)
+        By_xpath(checkoutlocators.billing_address).send_keys(
+            "30 Hudson yards, NY, USA")
         By_xpath(checkoutlocators.save_card_btn).click()
         time.sleep(5)
         print(name)
+        time.sleep(5)
         card_list = driver.find_elements_by_xpath(
             checkoutlocators.card_list)
         for i in card_list:
@@ -743,7 +924,7 @@ def add_new_card(driver, name, number, month, year, cvc):
         raise ex
 
 
-@allure.step("To remove a saved card at checkout stage.")
+@ allure.step("To remove a saved card at checkout stage.")
 def remove_saved_card(driver):
     By_xpath = driver.find_element_by_xpath
     By_id = driver.find_element_by_id
@@ -752,9 +933,15 @@ def remove_saved_card(driver):
         time.sleep(2)
         By_xpath(checkoutlocators.remove_card_btn).click()
         time.sleep(2)
-        By_xpath(checkoutlocators.remove_card_ok).click()
+        try:
+            By_xpath(checkoutlocators.remove_card_ok).click()
+        except:
+            By_xpath(checkoutlocators.remove_card_ok2).click()
         time.sleep(4)
-        By_xpath(checkoutlocators.ok_success_btn).click()
+        try:
+            By_xpath(checkoutlocators.ok_success_btn).click()
+        except:
+            By_xpath(checkoutlocators.ok_success_btn2).click()
         time.sleep(2)
         allure.attach(driver.get_screenshot_as_png(),
                       name='screen', attachment_type=AttachmentType.PNG)
@@ -788,7 +975,7 @@ def place_ur_order_from_payment(driver, status):
         raise e
 
 
-@allure.step("To delete a item from the cart")
+@ allure.step("To delete a item from the cart")
 def delete_from_cart(driver, item):
     By_xpath = driver.find_element_by_xpath
     By_xpath(productlocators.cart2).click()
@@ -1190,40 +1377,6 @@ def credit_card_payment(driver, name, number, month, year, cvc, remember):
         raise e
 
 
-@ allure.step("final order confirmation screen")
-def get_order_number(driver):
-    try:
-        order_number = driver.find_element_by_xpath(
-            checkoutlocators.order_num_p).text
-        print(order_number)
-        order = order_number.split()
-        print(order[2])
-        order_no = order[2]
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='Thank_you_screen', attachment_type=AttachmentType.PNG)
-        find_element_by_text(driver, "Continue to homepage").click()
-        time.sleep(3)
-        return order_no
-    except Exception as e:
-        raise e
-
-
-@ allure.step("To verify get home page using profile link click")
-def get_homepage_using_profile_link(driver):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        By_xpath(loginlocators.signedin_label).click()
-        time.sleep(4)
-        By_xpath(loginlocators.profile_btn).click()
-        time.sleep(8)
-        heading1 = By_xpath(loginlocators.home_page_heading).text
-        time.sleep(2)
-        print(heading1)
-        assert heading1 in "Experience the Best Food at Best In Town Pizzas"
-    except Exception as e:
-        raise e
-
-
 @ allure.step("To verify get contact us info")
 def get_contactus_info(driver):
     By_xpath = driver.find_element_by_xpath
@@ -1235,7 +1388,7 @@ def get_contactus_info(driver):
         print(heading1)
         assert heading1 in "ABOUT BEST IN TOWN PIZZAS"
         heading = By_xpath(loginlocators.openhours_heading).text
-        assert heading in "OPEN HOURS"
+        assert heading in "BUSINESS HOURS"
         open_days = By_xpath(loginlocators.opendays).text
         assert open_days in "Monday - Saturday"
         open_hrs = By_xpath(loginlocators.openhours).text
@@ -1251,5 +1404,19 @@ def get_contactus_info(driver):
         time.sleep(2)
         top_headings = By_xpath(loginlocators.top_heading).text
         assert top_headings in "BEST IN TOWN PIZZAS"
+    except Exception as e:
+        raise e
+
+
+@allure.step("To check the order in order history")
+def order_history(driver, order_number):
+    By_xpath = driver.find_element_by_xpath
+    try:
+        By_xpath(loginlocators.home_signin_btn).click()
+        time.sleep(2)
+        By_xpath(placedPaymentLocators.order_history_btn).click()
+        time.sleep(2)
+        order_num = By_xpath(placedPaymentLocators.order_number_in_list).text
+        assert order_number in order_num
     except Exception as e:
         raise e

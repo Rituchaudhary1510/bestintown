@@ -25,7 +25,7 @@ class TestBestInTownpizzabase(unittest.TestCase):
         # self.driver = webdriver.Chrome(executable_path="C:/GitHub/BEST_IN_TOWN/chromedriver.exe", options=chrome_options)
 
         self.driver = webdriver.Chrome(
-            "C:/Users/Digital Suppliers/Desktop/bestintown/chromedriver.exe")
+            "C:/Users/Digital Suppliers/Documents/GitHub/bestintown/chromedriver.exe")
 
         f = open('data.json', "r")
         data = json.loads(f.read())

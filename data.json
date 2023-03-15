@@ -1,5 +1,5 @@
 {
-    "url":"https://bestintownpizzas.com/home",
+    "url":"https://stage.bestintownpizza.com/home",
     "username3":"ritutanwar1510@gmail.com",
     "username":"devsharktank@gmail.com",
     "wrong_username":"ritumehla.tech@gmail.com",
@@ -13,6 +13,7 @@
 
     "select_card":"Sam Hoj (4242)",
     "address":"1818 Afton Street, Philadelphia, PA, USA",
+    "new_address":"2301 Woodward Street, Philadelphia, PA, USA",
 
     "name_on_card":"Sam Hoj",
     "card_number":"4242424242424242",
@@ -57,6 +58,15 @@
     }
     ],
 
+    "gourmet_pizza":[{
+        "menugroup":"GOURMET PIZZA",
+        "menusubgroup": "",
+        "menuitem": "G4. Hawaiian Pizza",
+        "onion":"",
+        "additional_topping":""
+    }
+    ],
+
     "calzones":[
         {
             "menugroup":"Calzones",
@@ -77,40 +87,22 @@
     "sandwiches":[
         {
             "menugroup":"SANDWICHES HALAL MEDITERRANEAN SPECALTIES",
-            "menuitem":"Falafel Sandwich"
+            "menuitem":"Falafel Sandwich",
+            "Fries":"Add Fries",
+            "Additional_topping":"nothing"
         }],
     
     "menulist_pizza":[
         
             {
                 "menugroup": "Pizza",
-                "menusubgroup": "",
                 "menuitem": "Tomato Pie",
                 "quantity": "2",
                 "size":"medium",
-                "size1":"large",
-                "size2":"xlarge",
-                "crust":"regular",
                 "crust1":"thin",
-                "additional_topping":"No topping"
+                "onion":"",
+                "additional_topping":"Beef Pepperoni"
 
-            }
-    
-        ],
-
-        "menulist_pizza2":[
-        
-            {
-                "menugroup": "Pizza",
-                "menusubgroup": "",
-                "menuitem": "Tomato Pie",
-                "quantity": "2",
-                "size":"medium",
-                "size1":"large",
-                "size2":"xlarge",
-                "crust":"regular",
-                "crust1":"thin",
-                "additional_topping":"No topping"
             }
     
         ],
@@ -118,126 +110,246 @@
         "menulist_pizza3":[
         
             {
-                "menugroup": "Gourmet Pizza",
+                "menugroup": "STROMBOLIS",
                 "menusubgroup": "",
-                "menuitem": "G1. Chicken Cordon Blue Pizza",
+                "menuitem": "2. Steak Stromboli",
                 "quantity": "2",
-                "size":"medium",
-                "size1":"large",
-                "size2":"xlarge",
-                "crust":"regular",
-                "crust1":"thin",
-                "additional_topping":"ExtraCheese_TurkeyHam"
+                "onion":"Fried Onions",
+                "additional_topping":"Beef Pepperoni"
+            },
+
+            {
+                "menugroup": "STROMBOLIS",
+                "menusubgroup": "",
+                "menuitem": "4. Beef Sausage",
+                "quantity": "2",
+                "onion":"Fried Onions",
+                "additional_topping":"Beef Pepperoni"
             }
     
         ],
-        "menulist_pizza4":[
+        "Stuffed Pizza":[
         
             {
                 "menugroup": "Stuffed Pizza",
                 "menusubgroup": "",
                 "menuitem": "Cheesesteak Stuffed Pizza",
                 "quantity": "2",
-                "size":"medium",
-                "size1":"large",
-                "size2":"xlarge",
-                "crust":"regular",
-                "crust1":"thin",
+                "size":"xlarge",
+                "crust":"thin",
+                "onion":"no",
                 "additional_topping":"No topping"
             }
     
         ],
 
-    "menulist":[
-        {
-            "productname":"Tomato Pie",
-            "product":"TOMATO PIE"
-
-        }
-    ],
-    "menulist_":[
-        {
-            "productname":"Roma Pizza"
-         
-            
-        }
-    ],
-
-    "menulist2":[
-        
-        {
-                "productname":"Cheese and Cheese Hoagie",
-                "product":"CHEESE AND CHEESE HOAGIE"
-                
-        },
-        {
-            "productname":"Corned Beef Special Hoagie",
-            "product":"CORNED BEEF SPECIAL HOAGIE"
-            
-            
-        }
-    ],
-    "menulist3":[
-        {
-            "productname":"Buffalo Finger Salad"
-            
-            
-        }],
-        "menulist4":[
-            {
-                "productname":"Pizza Burger"
-            }
-        ],
-        "menulist5":[
-            {
-                "productname":"Fajita Wrap",
-                "product":"FAJITA WRAP"
-            }
-        ],
-        "gourmet_pizza":[
-            {
-                "productname":"Grilled Chicken Caesar Pizza"
-                
-            }
-        ],
-        "stuffed_pizza":[
-            {
-                "productname":"Cheesesteak Stuffed Pizza"
-            }
-        ],
         "Calzones_menu":[
             {
-                "productname":"Vegetarian Calzone"
-            }
-        ],
-        "stramboilis_menu":[
+                "menugroup": "Calzones",
+                "menuitem":"Vegetarian Calzone",
+                "quantity": "2",
+                "size":"xlarge",
+                "crust":"thin",
+                "onion":"no",
+                "additional_topping":"No topping"
+            }],
+
+        "BUFFALO WINGS":[
             {
-                "productname":"Beef Sausage"
-            }
-        ],
-        "salad_menu":[
+                "menugroup":"Buffalo Wings",
+                "menuitem":"Wing Dings",
+                "size":"xlarge",
+                "crust":"thin",
+                "onion":"Hot Sauce",
+                "additional_topping":"No topping"                
+            }],
+            
+            "Hoagies_grinders":[
+                {
+                    "menugroup":"Hoagies & Grinders",
+                    "menuitem":"Veggie Hoagie",
+                    "platter":"Make it a Platter",
+                    "additional_topping":"No topping"
+                }],
+            "Steaks":[
+                    {
+                        "menugroup":"Steaks",
+                        "menuitem":"Pizza Steak",
+                        "platter":"Make it a Platter",
+                        "additional_topping":"Hot Peppers"
+                    }],
+                    
+
+            "Chicken Cheesesteaks":[
+                {
+                    "menugroup":"Chicken Cheesesteaks",
+                    "menuitem":"BBQ Chicken Steak",
+                    "platter":"Make it a Platter",
+                    "additional_topping":"Hot Peppers"
+                }],
+
+            "SALMON STEAKS":[
+                {
+                    "menugroup":"SALMON STEAKS",
+                    "menuitem":"Salmon and Shrimp Steak",
+                    "size":"small",
+                    "crust":"thin",
+                    "platter":"Make it a Platter",
+                    "additional_topping":"Hot Peppers"
+                }],
+                
+            "STEAMED_SEAFOOD_PLATTERS":[
+                {
+                    "menugroup":"STEAMED SEAFOOD PLATTERS",
+                    "menuitem":"22. Four Dungeness Platter",
+                    "size":"small",
+                    "crust":"thin",
+                    "addon":"Add 6 Shrimp",
+                    "additional_topping":"Hot Peppers"
+                }],
+            "ITALIAN PLATTERS":[
+                {
+                    "menugroup":"ITALIAN PLATTERS",
+                    "menuitem":"Chicken Cutlet Italian Platter",
+                    "size":"small",
+                    "crust":"thin",
+                    "pasta":"Spaghetti",
+                    "additional_topping":"Hot Peppers"
+                }],
+            
+            "BURGERS":[
+                {
+                    "menugroup":"BURGERS",
+                    "menuitem":"Hamburger",
+                    "size":"small",
+                    "crust":"thin",
+                    "extras":"Extra Cheese",
+                    "additional_topping":"Hot Peppers"
+                }],
+
+            "HOT PLATTERS HALAL":[
+                {
+                    "menugroup":"HOT PLATTERS",
+                    "menuitem":"Best In Town Mix Platter",
+                    "size":"small",
+                    "crust":"thin",
+                    "extras":"Spaghetti",
+                    "additional_topping":"Hot Peppers"
+                }],
+
+            "SANDWICHES HALAL":[
+                {
+                    "menugroup":"SANDWICHES HALAL",
+                    "menuitem":"Chicken Kabab Sandwich",
+                    "size":"small",
+                    "crust":"thin",
+                    "extras":"Add Fries",
+                    "additional_topping":"Hot Peppers"
+                }],
+            "SALAD HALAL":[
+                {
+                    "menugroup":"SALAD HALAL",
+                    "menuitem":"Shawarma Over Garden Salad",
+                    "size":"small",
+                    "crust":"thin",
+                    "Dressing":"Italian Dressing",
+                    "additional_topping":"Hot Peppers"
+                }],
+            "APPETIZERS HALAL":[
+                {
+                    "menugroup":"APPETIZERS",
+                    "menuitem":"Falafel with Hummus"
+                  
+                }],
+            "DESSERTS":[
+                {
+                    "menugroup":"DESSERTS",
+                    "menuitem":"Strawberry Cheesecake"
+                    
+                }],
+            "SIDE ORDERS":[
+                {
+                    "menugroup":"SIDE ORDERS",
+                    "menuitem":"Mozzarella Steak Fries"
+                    
+                }],
+            "QUESADILLAS":[
+                {
+                    "menugroup":"QUESADILLAS",
+                    "menuitem":"Cheese Quesadilla",
+                    "size":"small",
+                    "crust":"thin",
+                    "platter":"Make it a Platter",
+                    "additional_topping":"Hot Peppers"
+                }],
+            
+            "TRIPLE_CLUBS":[
+                {
+                    "menugroup":"TRIPLE CLUBS",
+                    "menuitem":"Grilled Chicken Club",
+                    "size":"small",
+                    "crust":"thin",
+                    "bread":"White Bread",
+                    "additional_topping":"Hot Peppers"
+                }],
+                
+        "HOT SANDWICHES":[
             {
-                "productname":"Garden Salad"
-            }
-        ],
-        "hoagies_grinders":[
+                "menugroup":"HOT SANDWICHES",
+                "menuitem":"Mushroom Parmigiana",
+                "size":"small",
+                "crust":"thin",
+                "platter":"Make it a platter",
+                "additional_topping":"Mayo"
+            }],
+        "COLD SANDWICHES":[
             {
-                "productname":"Turkey and Corned Beef Hoagie"
-            }
-        ],
-        "Paninis_menu":[
+                "menugroup":"COLD SANDWICHES",
+                "menuitem":"BLT Sandwich",
+                "size":"small",
+                "crust":"thin",
+                "platter":"Make it a platter",
+                "additional_topping":"White Bread"
+            }],
+        "PANINIS":[
             {
-                "productname":"Smoked Turkey Panini"
-            }
-        ],
-        "cold_sandwichs":[
+                "menugroup":"PANINIS",
+                "menuitem":"Italian Panini",
+                "size":"small",
+                "crust":"thin",
+                "platter":"Make it a platter",
+                "additional_topping":"White Bread"
+            }],
+        "WRAPS":[
             {
-                "productname":"American Cheese Sandwich"
-            }
-        ],
-        "hot_sandwichs":[
+                "menugroup":"WRAPS",
+                "menuitem":"Popeye Wrap",
+                "size":"small",
+                "crust":"thin",
+                "platter":"Make it a platter",
+                "additional_topping":"Hot Peppers"
+            }],
+        "SALAD_PLATTER":[
             {
-                "productname":"Meatball Parmigiana Sandwich"
-            }
-        ]
+                "menugroup":"SALAD_PLATTER",
+                "menuitem":"Hawaiian Chicken Salad",
+                "size":"small",
+                "crust":"thin",
+                "platter":"EGGS",
+                "additional_topping":"Italian Dressing"
+            }],
+            "BEVERAGES":[
+                {
+                    "menugroup":"BEVERAGES",
+                    "menuitem":"20 oz. Bottle Soda",
+                    "size":"small",
+                    "crust":"thin",
+                    "platter":"Coke",
+                    "additional_topping":"Italian Dressing"
+                }]
+               
+           
+    
+       
+     
 }

@@ -10,7 +10,7 @@ import random
 from random import randint
 from selenium.webdriver.support.ui import Select
 from locators import loginlocators
-from methods import is_website_available, sign_in, invalid_signin, logout, sign_up, fetching_website, forget_password_link
+from methods import sign_in, invalid_signin, logout, sign_up, fetching_website, forget_password_link
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys

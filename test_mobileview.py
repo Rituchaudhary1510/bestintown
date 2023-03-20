@@ -13,10 +13,10 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.service import Service
 from methods import find_element_by_text
-from methods import verify_order, edit_profile, edit_profile, logout, add_delivery_address, custom_tip, change_setting_to_delivery, fix_tip, find_element_by_text, delete_from_cart, empty_cart, new_card, pickup_order_setting, checkout, execute_click_by_text, select_card, select_dressings
-from methods import is_website_available, order_setting, select_dressings, sign_in, select_quantity, add_to_bag, sign_up, credit_card_payment, get_order_number
-from methods import delivery_order_confirm_info, select_toppings, pickup_order_confirm_info, checkout2, del_order_setting2, pickup_settings_2, edit_info, new_card, select_card
-from methods import asap_confirm_info, delete_card, invalid_signin, wrong_address, change_setting_to_pickup, review_details, order_setting2, later_order_setting, asap_setting
+from methods import verify_order, edit_profile, edit_profile, logout, add_delivery_address, custom_tip, fix_tip, find_element_by_text, delete_from_cart, new_card, pickup_order_setting, execute_click_by_text
+from methods import is_website_available, sign_in, add_to_bag, sign_up, get_order_number
+from methods import select_toppings, pickup_settings_2, edit_info, new_card
+from methods import asap_confirm_info, invalid_signin, wrong_address, change_setting_to_pickup, review_details, asap_setting
 
 
 class TestBookNowBase(unittest.TestCase):

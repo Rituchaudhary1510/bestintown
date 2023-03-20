@@ -67,6 +67,17 @@ class loginlocators:
     top_heading = "/html/body/main/div[1]/div/div[1]/div/div/div/h3"
 
 
+class ordertypeselectors:
+    calender = "/html/body/header[1]/div/div/div/div/div[2]/div[2]/span"
+    today = "/html/body/div[8]/div/div/div/div[2]/div/div/div/div/div/div[2]/div/label[2]"
+    asap = "/html/body/div[8]/div/div/div/div[2]/div/div/div/div/div/div[2]/div/label[1]"
+    later = "/html/body/div[8]/div/div/div/div[2]/div/div/div/div/div/div[2]/div/label[3]"
+    calender_dates = "/html/body/div[8]/div/div/div/div[2]/div/div/div/div/div/div[3]/div[1]/div/div/div/div/div/div[2]"
+    select_time = "/html/body/div[8]/div/div/div/div[2]/div/div/div/div/div/div[3]/div[2]/input"
+    today_select_time = "/html/body/div[9]/div/div/div/div[2]/div/div/div/div/div/div[3]/div[2]/input"
+    save_time = "/html/body/div[8]/div/div/div/div[3]/button[2]"
+
+
 class productlocators:
     products_list = "/html/body/main/div[2]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div/div"
     menugroup_list = '/html/body/main/div[2]/div/div[1]/div[1]/ul'

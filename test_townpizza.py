@@ -12,10 +12,9 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
 from locators import checkoutlocators, productlocators
 from methods import fetching_website, execute_click_by_product, select_product, sign_in, select_pizza_sides
-from methods import add_to_bag_and_verify_cart_details, Checkout_to_paymentscreen, Checkout, place_ur_order_from_payment
+from methods import add_to_bag_and_verify_cart_details, Checkout_to_paymentscreen, place_ur_order_from_payment
 from methods import edit_items, delete_items_empty_cart, increase_item_in_cart, decrease_item_in_cart
-from methods import fix_tip, find_element_by_text, empty_cart, order_setting, order_history
-from methods import select_combo_item, verify_order_details, add_to_bag_and_verify_cart_details_combo
+from methods import order_setting, order_history, select_combo_item, verify_order_details
 
 
 class TestBestInTownpizzabase(unittest.TestCase):

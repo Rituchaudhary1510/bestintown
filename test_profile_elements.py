@@ -9,9 +9,9 @@ import time
 import random
 from random import randint
 from selenium.webdriver.support.ui import Select
-from methods import sign_in, edit_profile, add_delivery_address, get_contactus_info, fetching_website, add_new_del_add
-from methods import execute_click_by_product, select_product, select_combo_item, add_to_bag_and_verify_cart_details, Checkout_to_paymentscreen, place_ur_order_from_payment
-from methods import remove_del_add, edit_del_add, add_new_card, remove_saved_card, select_pizza_sides
+from methods import sign_in, add_delivery_address, get_contactus_info, fetching_website, add_new_del_add
+from methods import execute_click_by_product, select_product, add_to_bag_and_verify_cart_details, Checkout_to_paymentscreen
+from methods import remove_del_add, edit_del_add, add_new_card, remove_saved_card, select_pizza_sides, place_ur_order_from_payment
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys

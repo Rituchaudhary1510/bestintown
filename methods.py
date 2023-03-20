@@ -5,10 +5,9 @@ import pytest
 import time
 import requests
 import random
-# import pytest_html
-# import HtmlTestRunne
+from datetime import date
 from selenium.webdriver.common.keys import Keys
-from locators import loginlocators, productlocators, checkoutlocators, menugroupLocators, cartLocators, paymentLocators, placedPaymentLocators
+from locators import loginlocators, ordertypeselectors, productlocators, checkoutlocators, menugroupLocators, cartLocators, paymentLocators, placedPaymentLocators
 from selenium.webdriver.support.ui import Select
 from allure_commons.types import AttachmentType
 
@@ -54,14 +53,16 @@ def execute_click_by_product(driver, itemlist):
         raise e
 
 
-def select_another_time(driver, timeslot):
-    driver.find_element_by_id(
-        loginlocators.another_time_button).click()
-    time.sleep(3)
-    driver.find_element_by_xpath(loginlocators.select_time).click()
-    find_element_by_text(driver, "11:00 AM").click()
-    time.sleep(2)
-    driver.find_element_by_xpath(loginlocators.save_time_btn).click()
+def future_date(driver):
+    try:
+        today = date.today()
+        today = str(today)
+        day = today[8:]
+        order_date = int(day)+7
+        print(order_date)
+        return order_date
+    except Exception as e:
+        raise e
 
 
 @allure.step("To perform click operation on the element specified in list:{1}")
@@ -298,11 +299,6 @@ def sign_in2(driver, email, password):
         allure.attach(driver.get_screenshot_as_png(),
                       name='Signin_screen', attachment_type=AttachmentType.PNG)
         time.sleep(2)
-        # signed_in=By_xpath(loginlocators.signedin_label).text
-        # print(signed_in)
-        # assert signed_in in "SHARKTANK DEVELOPMENT"
-        # return signed_in
-
     except Exception as e:
         raise e
 
@@ -316,7 +312,6 @@ def edit_profile(driver, name, email, name2):
         time.sleep(3)
         By_xpath(loginlocators.profile_btn).click()
         time.sleep(3)
-
         allure.attach(driver.get_screenshot_as_png(
         ), name='updated profile screen1', attachment_type=AttachmentType.PNG)
         time.sleep(2)
@@ -348,7 +343,6 @@ def add_delivery_address(driver, hno):
             print(success_msg)
             assert success_msg == "Good news! Best In Town Pizzas can deliver to this address"
             By_xpath(loginlocators.close_btn).click()
-
         except:
             print("new address ha sbeen added")
             allure.attach(driver.get_screenshot_as_png(
@@ -369,8 +363,6 @@ def logout(driver):
         time.sleep(3)
         By_xpath(loginlocators.logout_link).click()
         time.sleep(6)
-        # label=By_xpath(loginlocators.home_signin_btn).text
-        # assert label == "SIGN IN"
     except Exception as e:
         raise e
 
@@ -391,32 +383,7 @@ def invalid_signin(driver, email, password):
                       name='Signin_screen', attachment_type=AttachmentType.PNG)
         print(error)
         err_msg = "These credentials do not match our records."
-
         assert err_msg in error
-    except Exception as e:
-        raise e
-
-
-@allure.step("To be able to select desired quantity")
-def select_quantity(driver, quantity):
-    try:
-        By_xpath = driver.find_element_by_xpath
-        try:
-            By_xpath(productlocators.size).click()
-        except:
-            print("no size")
-        time.sleep(2)
-        try:
-            By_xpath(productlocators.crust).click()
-        except:
-            print("no crust")
-        time.sleep(2)
-        # By_xpath(productlocators.quantity).clear()
-        # By_xpath(productlocators.quantity).send_keys(quantity)
-        # time.sleep(2)
-        allure.attach(driver.get_screenshot_as_png(),
-                      name='toppings_screen', attachment_type=AttachmentType.PNG)
-        print("quantity")
     except Exception as e:
         raise e
 
@@ -482,7 +449,7 @@ def select_pizza_sides(driver, size, crust, onions, additional_Topping):
     time.sleep(4)
 
 
-@ allure.step("To be able to select desired quantity")
+@allure.step("To be able to select desired quantity")
 def select_toppings(driver, platter, topping):
     try:
         By_xpath = driver.find_element_by_xpath
@@ -515,47 +482,7 @@ def select_toppings(driver, platter, topping):
         raise e
 
 
-@ allure.step("To be able to select desired quantity")
-def select_dressings(driver, quantity):
-    try:
-        By_xpath = driver.find_element_by_xpath
-        try:
-            By_xpath(productlocators.dressing).click()
-        except:
-            print("no size")
-        time.sleep(2)
-        try:
-            By_xpath(productlocators.extra_topping).click()
-        except:
-            print("no crust")
-        time.sleep(2)
-        # By_xpath(productlocators.quantity).clear()
-        # By_xpath(productlocators.quantity).send_keys(quantity)
-        # time.sleep(2)
-        allure.attach(driver.get_screenshot_as_png(),
-                      name='toppings_screen', attachment_type=AttachmentType.PNG)
-        # print("quantity")
-    except Exception as e:
-        raise e
-
-
-@ allure.step("to add product to bag")
-def add_to_bag(driver, item):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        # By_xpath(productlocators.special_inst).send_keys("Extra cheese")
-        time.sleep(2)
-        By_xpath(productlocators.add_to_bag).click()
-        time.sleep(2)
-        print("added to bag")
-        allure.attach(driver.get_screenshot_as_png(),
-                      name='cart_screen', attachment_type=AttachmentType.PNG)
-
-    except Exception as e:
-        raise e
-
-
-@ allure.step("to add product to bag and verify cart details before checkout")
+@allure.step("to add product to bag and verify cart details before checkout")
 def add_to_bag_and_verify_cart_details(driver):
     By_xpath = driver.find_element_by_xpath
     By_id = driver.find_element_by_id
@@ -759,7 +686,7 @@ def edit_items(driver):
         raise ex
 
 
-@ allure.step("empty cart")
+@allure.step("empty cart")
 def delete_items_empty_cart(driver):
     By_xpath = driver.find_element_by_xpath
     no_of_items = By_xpath(cartLocators.item_number).text
@@ -793,18 +720,6 @@ def delete_items_empty_cart(driver):
         assert checkout in "$0.00"
     except Exception as ex:
         raise ex
-
-
-@ allure.step("Checkout")
-def Checkout(driver):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        By_xpath(cartLocators.checkout_btn).click()
-        time.sleep(3)
-        allure.attach(driver.get_screenshot_as_png(),
-                      name='screen', attachment_type=AttachmentType.PNG)
-    except Exception as e:
-        raise e
 
 
 @ allure.step("Checkout to payment screen")
@@ -950,7 +865,7 @@ def remove_saved_card(driver):
         raise e
 
 
-@ allure.step("palace your order")
+@allure.step("palace your order")
 def place_ur_order_from_payment(driver, status):
     By_xpath = driver.find_element_by_xpath
     try:
@@ -975,58 +890,7 @@ def place_ur_order_from_payment(driver, status):
         raise e
 
 
-@ allure.step("To delete a item from the cart")
-def delete_from_cart(driver, item):
-    By_xpath = driver.find_element_by_xpath
-    By_xpath(productlocators.cart2).click()
-    time.sleep(4)
-    a = driver.find_element_by_xpath(productlocators.deleted_item)
-    time.sleep(1)
-    a.click()
-    time.sleep(1)
-    driver.find_element_by_xpath(productlocators.yes_btn).click()
-    time.sleep(3)
-    driver.refresh()
-    cart = driver.find_element_by_xpath(productlocators.cart_table).text
-    assert item not in cart
-    print("Not added to bag")
-    allure.attach(driver.get_screenshot_as_png(),
-                  name='cart_screen', attachment_type=AttachmentType.PNG)
-
-
-@ allure.step("To be able to empty all the bag")
-def empty_cart(driver):
-    By_xpath = driver.find_element_by_xpath
-    By_xpath(productlocators.cart2).click()
-    time.sleep(4)
-    time.sleep(2)
-    try:
-        driver.find_element_by_xpath(productlocators.empty_bag2).click()
-        time.sleep(2)
-    except:
-        driver.find_element_by_xpath(productlocators.empty_bag).click()
-        time.sleep(2)
-    try:
-        driver.find_element_by_xpath(productlocators.empty_cart_yes).click()
-    except:
-        driver.find_element_by_xpath(productlocators.empty_cart_yes2).click()
-    time.sleep(3)
-    # driver.refresh()
-
-    try:
-        cart = driver.find_element_by_xpath(
-            productlocators.empty_bag_heading).text
-        assert "0 Items" in cart
-    except:
-        home_page = By_xpath(checkoutlocators.home_page_heading).text
-        print(home_page)
-        assert home_page == "Experience the Best Food at Best In Town"
-
-    allure.attach(driver.get_screenshot_as_png(),
-                  name='cart_screen', attachment_type=AttachmentType.PNG)
-
-
-@ allure.step("To change order setting to Pickup option")
+@allure.step("To change order setting to Pickup option")
 def order_setting(driver, order_type):
     By_xpath = driver.find_element_by_xpath
     try:
@@ -1075,151 +939,67 @@ def asap_setting(driver, address):
         # order_label=By_xpath(productlocators.order_label).text
         # print(order_label)
         # assert "ASAP" in order_label
-
     except Exception as e:
         raise e
 
 
-@ allure.step("Later order setting to Delivery option")
-def later_order_setting(driver, date, timeslot, address):
+@allure.step("Later order setting to Delivery option")
+def later_order_setting(driver, order_time):
     By_xpath = driver.find_element_by_xpath
     try:
-        By_xpath(productlocators.del_link_path).click()
+        order_date = future_date(driver)
+        By_xpath(ordertypeselectors.calender).click()
+        By_xpath(ordertypeselectors.later).click()
+        cal_dates = driver.find_elements_by_xpath(
+            "//*[@class='datepicker--cell datepicker--cell-day']")
+
+        for i in cal_dates:
+            print("in for11")
+            print(i.text)
+            if i.get_attribute("data-date") == str(order_date):
+                i.click()
+                break
+        By_xpath(ordertypeselectors.select_time).click()
+        time.sleep(1)
+        available_time = driver.find_elements_by_xpath(
+            "//*[@class='ui-menu-item']")
+        for i in available_time:
+            if i.text == (order_time):
+                i.click()
+                break
         time.sleep(2)
-        Select(By_xpath(productlocators.address_field)).select_by_value(address)
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='later_order_setting_screen', attachment_type=AttachmentType.PNG)
-        time.sleep(3)
-        By_xpath(productlocators.change_date_time_path).click()
-        time.sleep(2)
-        By_xpath(loginlocators.later_btn).click()
-        time.sleep(2)
-        # find_element_by_text(driver, date).click()
-        time.sleep(2)
-        Select(By_xpath(loginlocators.later_time)).select_by_value(timeslot)
-        time.sleep(2)
-        By_xpath(productlocators.final_btn).click()
-        time.sleep(2)
-        By_xpath(productlocators.update_btn).click()
-        time.sleep(2)
+        By_xpath(ordertypeselectors.save_time).click()
+        time.sleep(5)
+        later_date = By_xpath(ordertypeselectors.calender).text
+        print(later_date)
+        assert str(order_time) in later_date
+        assert str(order_date) in later_date
+    except Exception as e:
+        raise e
+
+
+@allure.step("Later order setting to Delivery option")
+def today_order_setting(driver, order_time):
+    By_xpath = driver.find_element_by_xpath
+    try:
+        By_xpath(ordertypeselectors.calender).click()
         try:
-            err = By_xpath(productlocators.invalid_address_err).text
-            print(err)
-            assert err == "Please set valid address for delivery"
+            By_xpath(ordertypeselectors.select_time).click()
         except:
-            print("not error")
-            # driver.refresh()
-            time.sleep(5)
-            # order_label=By_xpath(productlocators.order_label).text
-            # print(order_label)
-            # assert order_type in order_label
-            # assert timeslot in order_label
-            allure.attach(driver.get_screenshot_as_png(
-            ), name='final_order_setting_screen', attachment_type=AttachmentType.PNG)
-
-    except Exception as e:
-        raise e
-
-
-@allure.step("To proceed with checkout")
-def checkout(driver):
-    By_xpath = driver.find_element_by_xpath
-    # By_xpath=driver.find_element_by_xpath
-    By_xpath(productlocators.cart2).click()
-    time.sleep(4)
-    By_xpath(productlocators.checkout_btn).click()
-    try:
-        checkout_button = find_element_by_text(driver, "Place your order!")
-        assert True
-    except:
-        assert False
-    time.sleep(4)
-
-
-@ allure.step("To order details confirmation")
-def pickup_order_confirm_info(driver, customername, pickuptime):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        # name=By_xpath(checkoutlocators.contact_name).text
-        # assert customername in name
-        heading = By_xpath(checkoutlocators.order_setting_heading).text
-        assert "PICKUP ADDRESS" in heading
-        detail = By_xpath(checkoutlocators.cust_detail).text
-        assert customername in detail
-        assert "Pickup" in detail
-        # order_time =By_xpath(checkoutlocators.date_time).text
-        # print(order_time)
-        print(pickuptime)
-        assert pickuptime in detail
-
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='confirminfo_screen', attachment_type=AttachmentType.PNG)
-    except Exception as e:
-        raise e
-
-
-@ allure.step("To order details confirmation")
-def delivery_order_confirm_info(driver, customername, date_time):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        # name=By_xpath(checkoutlocators.contact_name).text
-        # assert customername in name
-        # order_time =By_xpath(checkoutlocators.date_time).text
-        # assert order_time in date_time
-        heading = By_xpath(checkoutlocators.order_setting_heading).text
-        assert "DELIVERY ADDRESS" in heading
-        detail = By_xpath(checkoutlocators.cust_detail).text
-        assert customername in detail
-        assert "Delivery" in detail
-        # order_time =By_xpath(checkoutlocators.date_time2).text
-        assert date_time in detail
-        # By_xpath(checkoutlocators.delivery_instructions).click()
-        # By_xpath(checkoutlocators.inst_textarea).send_keys("Double Cheese")
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='confirminfo_screen', attachment_type=AttachmentType.PNG)
-    except Exception as e:
-        raise e
-
-
-@ allure.step("To order details confirmation")
-def asap_confirm_info(driver, customername, date_time):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        # name=By_xpath(checkoutlocators.contact_name).text
-        # assert customername in name
-        # order_time =By_xpath(checkoutlocators.date_time).text
-        # assert order_time in date_time
-        heading = By_xpath(checkoutlocators.order_setting_heading).text
-        assert "DELIVERY ADDRESS" in heading
-        detail = By_xpath(checkoutlocators.cust_detail).text
-        assert customername in detail
-        assert "ASAP" in detail
-
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='confirminfo_screen', attachment_type=AttachmentType.PNG)
-    except Exception as e:
-        raise e
-
-
-@ allure.step("to change order setting at payment page")
-def change_setting_to_delivery(driver):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        By_xpath(checkoutlocators.change_settings).click()
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='confirminfo_screen', attachment_type=AttachmentType.PNG)
+            By_xpath(ordertypeselectors.today_select_time).click()
+            time.sleep(1)
+        available_time = driver.find_elements_by_xpath(
+            "//*[@class='ui-menu-item']")
+        for i in available_time:
+            if i.text == (order_time):
+                i.click()
+                break
         time.sleep(2)
-    except Exception as e:
-        raise e
-
-
-@ allure.step("to change order setting at payment page")
-def change_setting_to_pickup(driver):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        By_xpath(checkoutlocators.change_settings).click()
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='confirminfo_screen', attachment_type=AttachmentType.PNG)
+        By_xpath(ordertypeselectors.save_time).click()
+        time.sleep(5)
+        order_date_time = By_xpath(ordertypeselectors.calender).text
+        print(order_date_time)
+        assert str(order_time) in order_date_time
     except Exception as e:
         raise e
 
@@ -1250,133 +1030,6 @@ def fix_tip(driver):
     except Exception as ex:
         raise ex
 
-
-@ allure.step("To proceed to payments")
-def checkout2(driver):
-    try:
-        find_element_by_text(driver, "Place your order!").click()
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='Review_place order_screen', attachment_type=AttachmentType.PNG)
-        try:
-            Select(driver.find_element_by_xpath(checkoutlocators.secnd_deli_field)
-                   ).select_by_visible_text("4600 Roosevelt Boulevard, Philadelphia, PA, USA")
-            find_element_by_text(driver, "Update").click()
-        except:
-            print("2nd")
-    except Exception as ex:
-        raise ex
-    time.sleep(3)
-
-
-@ allure.step("To enter wrong delivery address")
-def wrong_address(driver):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-        time.sleep(3)
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-        # By_xpath(checkoutlocators.contact_address).clear()
-        By_xpath(checkoutlocators.contact_address).send_keys(
-            "456,Housing Board Colony,Rajasthan,India")
-        # By_xpath(checkoutlocators.contact_spec_ins).send_keys("No Extra Cheese Please")
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='confirminfo_screen', attachment_type=AttachmentType.PNG)
-
-        find_element_by_text(driver, "Continue to payment method").click()
-        time.sleep(3)
-        err_msg = By_xpath(checkoutlocators.invalid_add_err_msg).text
-        assert err_msg == "Please set valid address for delivery"
-    except Exception as e:
-        raise e
-
-
-@ allure.step(" To verify order details on payment screen")
-def review_details(driver, name, order_type):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        By_xpath(checkoutlocators.change_card_btn).click()
-        time.sleep(2)
-        order = By_xpath(checkoutlocators.order_type).text
-        print(order)
-        name_in = By_xpath(checkoutlocators.name_in_order).text
-        print(name)
-        assert name == name_in
-        assert order == order_type
-    except Exception as ex:
-        raise ex
-
-
-@ allure.step("To verify successful payment by selecting one of thesaved card. ")
-def select_card(driver, selected_card):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        By_xpath(checkoutlocators.change_card_btn).click()
-        time.sleep(2)
-        Select(By_xpath(checkoutlocators.select_card)
-               ).select_by_visible_text(selected_card)
-        allure.attach(driver.get_screenshot_as_png(),
-                      name='pament_screen', attachment_type=AttachmentType.PNG)
-        By_xpath(checkoutlocators.place_order_btn).click()
-        time.sleep(3)
-        Thank_heading = By_xpath(checkoutlocators.Thank_heading).text
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='order_placed_screen', attachment_type=AttachmentType.PNG)
-        assert Thank_heading == "THANK YOU!"
-    except Exception as ex:
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='card_screen_failure', attachment_type=AttachmentType.PNG)
-        raise ex
-
-
-@ allure.step("To verify successful payment by selecting one of thesaved card. ")
-def delete_card(driver, selected_card):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        By_xpath(checkoutlocators.change_card_btn).click()
-        time.sleep(2)
-        Select(By_xpath(checkoutlocators.select_card)
-               ).select_by_visible_text(selected_card)
-        allure.attach(driver.get_screenshot_as_png(),
-                      name='pament_screen', attachment_type=AttachmentType.PNG)
-        By_xpath(checkoutlocators.delete_card).click()
-        time.sleep(1)
-        try:
-            Select(By_xpath(checkoutlocators.select_card)
-                   ).select_by_visible_text(selected_card)
-            assert False
-        except:
-            assert True
-    except Exception as ex:
-        allure.attach(driver.get_screenshot_as_png(
-        ), name='card_screen_failure', attachment_type=AttachmentType.PNG)
-        raise ex
-
-
-@ allure.step("To make credit card payments")
-def credit_card_payment(driver, name, number, month, year, cvc, remember):
-    By_xpath = driver.find_element_by_xpath
-    try:
-        By_xpath(checkoutlocators.card_name).send_keys(name)
-        time.sleep(7)
-        By_xpath(checkoutlocators.card_number).send_keys(number)
-        By_xpath(checkoutlocators.month).send_keys(month)
-        By_xpath(checkoutlocators.year).send_keys(year)
-        By_xpath(checkoutlocators.cvc).send_keys(cvc)
-        if remember == "Yes":
-            By_xpath(checkoutlocators.remember_card).click()
-            time.sleep(2)
-        allure.attach(driver.get_screenshot_as_png(),
-                      name='pament_screen', attachment_type=AttachmentType.PNG)
-        By_xpath(checkoutlocators.place_order_btn).click()
-        time.sleep(3)
-        Thank_heading = By_xpath(checkoutlocators.Thank_heading).text
-        print(Thank_heading)
-        assert Thank_heading == "THANK YOU!"
-    except Exception as e:
-        raise e
-
-
 @ allure.step("To verify get contact us info")
 def get_contactus_info(driver):
     By_xpath = driver.find_element_by_xpath
@@ -1406,7 +1059,6 @@ def get_contactus_info(driver):
         assert top_headings in "BEST IN TOWN PIZZAS"
     except Exception as e:
         raise e
-
 
 @allure.step("To check the order in order history")
 def order_history(driver, order_number):
